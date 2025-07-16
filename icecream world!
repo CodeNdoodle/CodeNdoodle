@@ -1,1 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🍦 Ice Cream World 2.0 🍦</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive;
+      background: linear-gradient(270deg, #ffe4e1, #e0ffff, #fffacd, #ffb6c1);
+      background-size: 800% 800%;
+      animation: rainbow 20s ease infinite;
+      color: #5a189a;
+      text-align: center;
+      padding-bottom: 50px;
+    }
+
+    @keyframes rainbow {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    header {
+      background: linear-gradient(to right, #ffb3ec, #b5f7ff);
+      padding: 25px;
+      font-size: 2.5rem;
+      color: #880e4f;
+      text-shadow: 2px 2px white;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    form {
+      margin: 40px auto;
+      background-color: #ffffffcc;
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 600px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    select, input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 2px solid #ffb3ec;
+      font-size: 1rem;
+    }
+
+    select[multiple] {
+      height: 100px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      font-size: 1.2rem;
+      background: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ff69b4;
+      transition: 0.3s ease;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    button:hover {
+      background-color: #f50057;
+      box-shadow: 0 0 20px #f50057;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 1.3rem;
+      color: #4a148c;
+      font-weight: bold;
+      padding: 20px;
+    }
+
+    footer {
+      margin-top: 60px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    🍦 Welcome to Ice Cream World 2.0! 🍦
+  </header>
+
+  <form id="iceCreamForm">
+    <label for="name">Your Ice Cream Name:</label>
+    <input type="text" id="name" placeholder="e.g. Rainbow Unicorn Delight" required>
+
+    <label for="flavor">Choose Your Flavor:</label>
+    <select id="flavor">
+      <option>Vanilla</option>
+      <option>Chocolate</option>
+      <option>Strawberry</option>
+      <option>Mango</option>
+      <option>Mint</option>
+      <option>Bubblegum</option>
+      <option>Cookies & Cream</option>
+      <option>Caramel Swirl</option>
+    </select>
+
+    <label for="toppings">Pick Your Toppings (hold Ctrl to choose more):</label>
+    <select id="toppings" multiple>
+      <option>Sprinkles</option>
+      <option>Gummy Bears</option>
+      <option>Chocolate Chips</option>
+      <option>Oreo Crumbs</option>
+      <option>Mini Marshmallows</option>
+      <option>Jelly Beans</option>
+      <option>Choco Syrup Drops</option>
+    </select>
+
+    <label for="cone">Pick a Cone:</label>
+    <select id="cone">
+      <option>Waffle Cone</option>
+      <option>Sugar Cone</option>
+      <option>Cup</option>
+      <option>Chocolate Dipped Cone</option>
+    </select>
+
+    <label for="size">Choose the Size:</label>
+    <select id="size">
+      <option>Mini</option>
+      <option>Regular</option>
+      <option>Jumbo</option>
+      <option>Monster Tower 🍧🍧🍧</option>
+    </select>
+
+    <label for="sauce">Select a Drizzle Sauce:</label>
+    <select id="sauce">
+      <option>Chocolate Fudge</option>
+      <option>Strawberry Syrup</option>
+      <option>Caramel Drizzle</option>
+      <option>No Sauce</option>
+    </select>
+
+    <label for="mood">Pick Your Ice Cream Mood Emoji:</label>
+    <select id="mood">
+      <option>😋</option>
+      <option>🤩</option>
+      <option>💖</option>
+      <option>🌈</option>
+      <option>🍭</option>
+    </select>
+
+    <button type="button" onclick="buildIceCream()">Build My Ice Cream!</button>
+  </form>
+
+  <div id="result"></div>
+
+  <footer>
+    🍨 Made with sparkle by Yashfeen – 2025 🍨
+  </footer>
+
+  <script>
+    function buildIceCream() {
+      const name = document.getElementById("name").value.trim();
+      const flavor = document.getElementById("flavor").value;
+      const cone = document.getElementById("cone").value;
+      const size = document.getElementById("size").value;
+      const sauce = document.getElementById("sauce").value;
+      const mood = document.getElementById("mood").value;
+
+      // Get multiple toppings
+      const toppingsSelect = document.getElementById("toppings");
+      const selectedToppings = Array.from(toppingsSelect.selectedOptions).map(opt => opt.value);
+      const toppingsList = selectedToppings.join(", ");
+
+      if (name === "") {
+        alert("Please give your ice cream a name!");
+        return;
+      }
+
+      const resultDiv = document.getElementById("result");
+      resultDiv.innerHTML = `🍦 <strong>${name}</strong> is here! It's a <em>${size}</em> scoop of <em>${flavor}</em> ice cream in a <em>${cone}</em> with <em>${sauce}</em> on top and these toppings: <em>${toppingsList}</em> ${mood} <br> <br> Enjoy your dreamy dessert! ✨`;
+    }
+  </script>
+
+</body>
+</html>
 
