@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>🍦 Ice Cream World with PICS 🍦</title>
+  <title>🍦 Ice Cream World - Pic Perfect!</title>
   <style>
     body {
       font-family: 'Comic Sans MS', cursive;
@@ -10,7 +10,7 @@
       background-size: 800% 800%;
       animation: rainbow 20s ease infinite;
       text-align: center;
-      padding-bottom: 40px;
+      padding-bottom: 50px;
     }
 
     @keyframes rainbow {
@@ -29,7 +29,7 @@
     }
 
     form {
-      margin: 40px auto;
+      margin: 30px auto;
       background-color: #ffffffdd;
       padding: 25px;
       border-radius: 20px;
@@ -86,9 +86,12 @@
     }
 
     #icePic {
-      margin-top: 20px;
-      width: 130px;
+      margin-top: 25px;
+      width: 180px;
       height: auto;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     footer {
@@ -101,12 +104,12 @@
 <body>
 
   <header>
-    🍧 Welcome to Ice Cream World 2.0! 🍧
+    🍨 Welcome to Ice Cream World! 🍨
   </header>
 
   <form id="iceCreamForm">
     <label for="name">Ice Cream Name:</label>
-    <input type="text" id="name" placeholder="e.g. Pinky Unicorn Deluxe" required>
+    <input type="text" id="name" placeholder="e.g. Unicorn Berry Blast" required>
 
     <label for="flavor">Choose a Flavor:</label>
     <select id="flavor">
@@ -122,9 +125,8 @@
     <select id="toppings" multiple>
       <option>Sprinkles</option>
       <option>Oreo Crumbs</option>
-      <option>Choco Chips</option>
       <option>Gummy Bears</option>
-      <option>Jelly Beans</option>
+      <option>Choco Chips</option>
     </select>
 
     <label for="cone">Choose Cone:</label>
@@ -143,20 +145,20 @@
 
     <label for="mood">Emoji Mood:</label>
     <select id="mood">
-      <option>💖</option>
-      <option>🌈</option>
-      <option>😋</option>
       <option>🍭</option>
+      <option>💖</option>
+      <option>😋</option>
+      <option>🌈</option>
     </select>
 
-    <button type="button" onclick="buildIceCream()">Build It!</button>
+    <button type="button" onclick="buildIceCream()">Build My Dream Ice Cream!</button>
   </form>
 
   <div id="result"></div>
-  <img id="icePic" style="display:none;">
+  <img id="icePic" style="display: none;" />
 
   <footer>
-    💗 Created by Queen Yashfeen – 2025 💗
+    ✨ Built with love by Yashfeen – 2025 ✨
   </footer>
 
   <script>
@@ -175,24 +177,27 @@
         return;
       }
 
+      // Set text result
       const result = document.getElementById("result");
-      result.innerHTML = `🍦 <strong>${name}</strong> is a <em>${size}</em> ${flavor} ice cream in a ${cone} with toppings: <em>${toppings}</em> ${mood} <br> <br> ENJOY IT!! ✨✨`;
+      result.innerHTML = `🍦 <strong>${name}</strong> is a <em>${size}</em> ${flavor} ice cream in a ${cone} with: <em>${toppings}</em> ${mood}<br><br>Yummyyyyy! 🍧✨`;
+
+      // Set correct image
+      const imageLinks = {
+        "Vanilla": "https://cdn.pixabay.com/photo/2017/04/23/20/24/ice-cream-2250550_1280.png",
+        "Chocolate": "https://cdn.pixabay.com/photo/2014/04/22/02/56/ice-cream-329308_1280.png",
+        "Strawberry": "https://cdn.pixabay.com/photo/2015/06/10/14/44/ice-cream-804620_1280.png",
+        "Mango": "https://cdn.pixabay.com/photo/2020/07/07/08/17/ice-cream-5378864_1280.png",
+        "Mint": "https://cdn.pixabay.com/photo/2018/07/07/11/56/mint-ice-cream-3522685_1280.png",
+        "Bubblegum": "https://cdn.pixabay.com/photo/2016/06/28/03/25/scoops-1484300_1280.png"
+      };
 
       const pic = document.getElementById("icePic");
-      let imgLink = "";
-
-      if (flavor === "Vanilla") imgLink = "https://cdn-icons-png.flaticon.com/512/1046/1046784.png";
-      else if (flavor === "Chocolate") imgLink = "https://cdn-icons-png.flaticon.com/512/1046/1046771.png";
-      else if (flavor === "Strawberry") imgLink = "https://cdn-icons-png.flaticon.com/512/2232/2232688.png";
-      else if (flavor === "Mango") imgLink = "https://cdn-icons-png.flaticon.com/512/4338/4338791.png";
-      else if (flavor === "Mint") imgLink = "https://cdn-icons-png.flaticon.com/512/6505/6505987.png";
-      else if (flavor === "Bubblegum") imgLink = "https://cdn-icons-png.flaticon.com/512/5655/5655461.png";
-
-      pic.src = imgLink;
+      pic.src = imageLinks[flavor];
       pic.style.display = "block";
     }
   </script>
 
 </body>
 </html>
+
 
